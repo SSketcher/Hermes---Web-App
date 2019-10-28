@@ -4,10 +4,10 @@
 {% endblock %}
 {% block body %}
 <div class="wrapper">
-    <nav>
-            <div class="logo">
-            HERMES
-            </div>
+      <nav>
+              <div class="logo">
+              HERMES
+              </div>
 
               <div class="menu">
                     <ul>
@@ -22,23 +22,26 @@
 </div>  
 
 <div class="main-area" id="main">
-        <button class="btn bnt1">Log in</button>
-        <button class="btn bnt2">Register</button>
+
+        <a href="{{ url_for('log') }}"><button class="btn bnt1">Log in</button></a>
+        <a href="{{ url_for('register') }}"><button class="btn bnt2">Register</button></a>
 </div>
   
 <div class="about-area" id="about">
   <h1>About project</h1>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae accumsan lacus. Sed hendrerit nibh id vehicula eleifend. Donec et elit eros. Mauris tincidunt tellus risus. Duis quis lorem tellus. Fusce finibus sollicitudin turpis vel fringilla. Ut leo dolor, mollis et luctus ac, pretium ac massa. Nunc at odio velit.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae accumsan lacus. Sed hendrerit nibh id vehicula eleifend. Donec et elit eros. Mauris tincidunt tellus risus. Duis quis lorem tellus. Fusce finibus sollicitudin turpis vel fringilla. Ut leo dolor, mollis et luctus ac, pretium ac massa. Nunc at odio velit.
         Aliquam aliquam, purus sit amet porttitor pharetra, odio eros tincidunt nisi, nec ultrices enim dui vel sem. Proin tincidunt justo sed interdum facilisis. Donec faucibus, tellus id sagittis lacinia, ex leo ornare elit, ut commodo lorem diam pharetra velit. Cras vehicula orci odio, ut tincidunt lacus dictum nec. Praesent ac.
         </p>
 </div>
 <div class="contact-area" id="contact">
-  <h1>Contact</h1>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae accumsan lacus. Sed hendrerit nibh id vehicula eleifend. Donec et elit eros. Mauris tincidunt tellus risus. Duis quis lorem tellus. Fusce finibus sollicitudin turpis vel fringilla. Ut leo dolor, mollis et luctus ac, pretium ac massa. Nunc at odio velit.
-        Aliquam aliquam, purus sit amet porttitor pharetra, odio eros tincidunt nisi, nec ultrices enim dui vel sem. Proin tincidunt justo sed interdum facilisis. Donec faucibus, tellus id sagittis lacinia, ex leo ornare elit, ut commodo lorem diam pharetra velit. Cras vehicula orci odio, ut tincidunt lacus dictum nec. Praesent ac.
-        </p>
+  <div class="contact-box">
+        <h1>Contact us</h1>
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                <input type="text" name="" placeholder="Mail">
+                <input type="submit" name="" value="Send">
+  </div> 
 </div>
 
 <div class="footer">Product by Michał Borkowski and Jakub Wojciechowski.</div>
