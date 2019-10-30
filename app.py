@@ -23,12 +23,30 @@ def index():
 
 
 #___Login block___
+
 @app.route('/log', methods=['GET', 'POST'])
 def log():
     if request.method == 'POST':
+        username = request.form['username']
+        password_candidate = request.form['password']
+        #___Create cursor___
+        cur = mysql.connection.cursor()
+        #___Get User by Username___
+        result = cur.execute("SELECT * FROM users WHERE username = %s",(username))
+
+        if result > 0:
+            data = cur.fetchone()
+            password = data['password']
+
+            if sha256_crypt.verify(password_candidate, password):
+                app.logger.info('PASSWORD MATCHED')
+
+        else:
+            app.logger.info('USER NOT FOUND')
+
         return redirect(url_for('index'))
 
-    return render_template('log.html')
+    return render_template('log_wtf.html')
 
 
 #___Registration block___
@@ -60,7 +78,7 @@ def register():
         #___Closing connection___
         cur.close()
 
-        return redirect(url_for('index'))
+        return redirect(url_for('log_wtf'))
 
     return render_template('register_wtf.html', form = form)
 
