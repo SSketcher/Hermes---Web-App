@@ -82,6 +82,21 @@ def register():
 
     return render_template('register_wtf.html', form = form)
 
+@app.route('/user')
+def user():
+    return render_template('user.html')
+
+@app.route('/user_home')
+def user_home():
+    return render_template('user_home.html')
+
+@app.route('/user_profile')
+def user_profile():
+    return render_template('user_profile.html')
+    
+@app.route('/user_stats')
+def user_stats():
+    return render_template('user_stats.html')
 
 if __name__ == "__main__":
     app.run(debug = True)
