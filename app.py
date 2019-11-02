@@ -2,6 +2,7 @@ from flask import Flask, request, url_for, redirect, render_template, flash, ses
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
+from functools import wraps
 
 
 app = Flask(__name__)
@@ -15,41 +16,6 @@ app.config['MYSQL_DB'] = 'sql7310443'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 #___MyDQL config___
 mysql = MySQL(app)
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-#___Login block___
-@app.route('/log', methods=['GET', 'POST'])
-def log():
-    if request.method == 'POST':
-        username = request.form['username']
-        password_candidate = request.form['password']       
-        
-        #___Create cursor___
-        cur = mysql.connection.cursor()
-        #___Get User by Username___
-        result = cur.execute("SELECT * FROM users WHERE username = %s",[username])
-
-        if result > 0:
-            data = cur.fetchone()
-            password = data['password']
-
-            if sha256_crypt.verify(password_candidate, password):
-                session['logged_in'] = True
-                session['username'] = username
-
-                return redirect('user')
-            else:
-                error = 'Invalid password'
-                return render_template('log_wtf.html', error = error)
-        else:
-            error = 'User not found'
-            return render_template('log_wtf.html', error = error )
-    return render_template('log_wtf.html')
 
 
 #___Registration block___
@@ -71,7 +37,6 @@ def register():
         email = form.email.data
         username = form.username.data
         password = sha256_crypt.encrypt(str(form.password.data))
-
         #___Create cursor___
         cur = mysql.connection.cursor()
         #___SQL Query___
@@ -80,24 +45,76 @@ def register():
         mysql.connection.commit()
         #___Closing connection___
         cur.close()
-
         return redirect(url_for('index'))
-
     return render_template('register_wtf.html', form = form)
 
+
+#___Login block___
+@app.route('/log', methods=['GET', 'POST'])
+def log():
+    if request.method == 'POST':
+        username = request.form['username']
+        password_candidate = request.form['password']       
+        
+        #___Create cursor___
+        cur = mysql.connection.cursor()
+        #___Get User by Username___
+        result = cur.execute("SELECT * FROM users WHERE username = %s",[username])
+
+        if result > 0:
+            data = cur.fetchone()
+            password = data['password']
+            if sha256_crypt.verify(password_candidate, password):
+                session['logged_in'] = True
+                session['username'] = username
+                flash('You are now logged in','success')
+                return redirect('user')
+            else:
+                error = 'Invalid password'
+                return render_template('log_wtf.html', error = error)
+        else:
+            error = 'User not found'
+            return render_template('log_wtf.html', error = error )
+    return render_template('log_wtf.html')
+
+#__Adding decorators__
+def is_logged_in(f):
+    @wraps(f)
+    def wrap(*ards, **kwargs):
+        if 'logged_in' in session:
+            return f(*ards, **kwargs)
+        else:
+            flash('Unuthorize, log in !', 'danger')
+            return redirect(url_for('log'))
+    return wrap
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You are now logout', 'message')
+
+#__Subpages__
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/user')
+@is_logged_in
 def user():
     return render_template('user.html')
 
 @app.route('/user_home')
+@is_logged_in
 def user_home():
     return render_template('user_home.html')
 
 @app.route('/user_profile')
+@is_logged_in
 def user_profile():
     return render_template('user_profile.html')
     
 @app.route('/user_stats')
+@is_logged_in
 def user_stats():
     return render_template('user_stats.html')
 
