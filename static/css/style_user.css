@@ -1,0 +1,104 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: lighter;
+  background-color: #D3D3D3;
+}
+
+.sidebar{
+  width: 200px;
+  height: 100%;
+  background: #778899;
+  padding: 30px 0px;
+  position: fixed;
+}
+
+.sidebar h2{
+  color: #000;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar ul li{
+  padding: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}    
+
+.sidebar ul li a{
+  color: #000;
+  display: block;
+}
+
+.sidebar ul li a .fas{
+  width: 25px;
+}
+
+.sidebar ul li:hover{
+  background-color: #5f6769;
+}
+    
+.sidebar ul li:hover a{
+  color: #fff;
+}
+ 
+.sidebar .social_media{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+
+.main_content, .profile_content, .stats_content{
+  margin-left: 200px;
+}
+
+.main_content .header, .profile_content .header, .stats_content .header{
+  padding: 20px;
+  background: #fff;
+  color: #717171;
+  border-bottom: 1px solid #e0e4e8;
+}
+.main_content .info, .profile_content .info, .stats_content .info{
+  color: #717171;
+  line-height: 25px;
+}
+
+.main_content .info div, .profile_content .info div, .stats_content .info div{
+  margin-bottom: 20px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+}
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
