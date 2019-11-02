@@ -26,30 +26,29 @@ def index():
 @app.route('/log', methods=['GET', 'POST'])
 def log():
     if request.method == 'POST':
-
-        """
         username = request.form['username']
-        password_candidate = request.form['password']
-        
+        password_candidate = request.form['password']       
         
         #___Create cursor___
         cur = mysql.connection.cursor()
         #___Get User by Username___
-        result = cur.execute("SELECT * FROM users WHERE username = %s",(username))
+        result = cur.execute("SELECT * FROM users WHERE username = %s",[username])
 
         if result > 0:
             data = cur.fetchone()
             password = data['password']
 
-            #if sha256_crypt.verify(password_candidate, password):
-                #app.logger.info('PASSWORD MATCHED')
+            if sha256_crypt.verify(password_candidate, password):
+                session['logged_in'] = True
+                session['username'] = username
 
-        #else:
-
-            #app.logger.info('USER NOT FOUND')
-        """
-        return redirect(url_for('index'))
-
+                return redirect('user')
+            else:
+                error = 'Invalid password'
+                return render_template('log_wtf.html', error = error)
+        else:
+            error = 'User not found'
+            return render_template('log_wtf.html', error = error )
     return render_template('log_wtf.html')
 
 
@@ -103,4 +102,5 @@ def user_stats():
     return render_template('user_stats.html')
 
 if __name__ == "__main__":
+    app.secret_key = 'oliwiakrauze'
     app.run(debug = True)
