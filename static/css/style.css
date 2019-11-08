@@ -6,7 +6,7 @@ html, body{
 }
 
 body{
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-weight: lighter;
 }
 
@@ -14,7 +14,7 @@ body{
   line-height: 60px;
   position: fixed;
   float: left;
-  margin: 16px 46px;
+  margin: 10px 46px;
   color: #000;
   font-weight: bold;
   font-size: 36px;
@@ -29,7 +29,7 @@ nav {
 }
 
 nav ul {
-  line-height: 60px;
+  line-height: 40px;
   color: #fff;
   list-style: none;
   overflow: hidden;
@@ -81,7 +81,6 @@ font-family: "montserrat";
 cursor: pointer;
 margin: 10px;
 transition: 0.8s;
-position: relative;
 overflow: hidden;
 }
 

@@ -68,7 +68,7 @@ def log():
                 session['logged_in'] = True
                 session['username'] = username
                 flash('You are now logged in','success')
-                return redirect('user')
+                return redirect('user_home')
             else:
                 error = 'Invalid password'
                 return render_template('log_wtf.html', error = error)
