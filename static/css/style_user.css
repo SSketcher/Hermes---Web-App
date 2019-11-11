@@ -79,10 +79,14 @@ body{
 .profile_content, .stats_content{
   font-family: 'Roboto Condensed', sans-serif;
   margin-left: 200px;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+
 }
 
 
-.main_content .header, .profile_content .header, .stats_content .header{
+.profile_content .header, .stats_content .header{
   padding: 20px;
   text-align: center;
   background: #fff;
@@ -90,6 +94,7 @@ body{
   font-weight: bold;
   font-size: 20px;
   border-bottom: 1px solid #e0e4e8;
+  
 }
 
 .piechart{
@@ -122,9 +127,6 @@ body{
 
 }
 
-.main_content .info div, .profile_content .info div, .stats_content .info div{
-  margin-bottom: 20px;
-}
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -153,3 +155,43 @@ button {
 button:hover, a:hover {
   opacity: 0.7;
 }
+
+
+.table1{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  min-width: 500px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background-color: #778899;
+  color: #000;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
