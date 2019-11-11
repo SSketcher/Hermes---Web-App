@@ -72,7 +72,7 @@ body{
   color: #717171;
   line-height: 25px;
   padding: 20px;
-  position: relative;
+  overflow: hidden;
 }
 
 
@@ -93,15 +93,27 @@ body{
 }
 
 .piechart{
+ width: 600px;
+ height: 400px;
  position: absolute;
  bottom: 5%;
  right: 5%;
 }
-.calendar_basic{
+.histo{
+  width: 800px;
+  height: 600px;
   position: absolute;
-  bottom: 400px;
+  bottom: 30%;
   right: 5%;
 }
+.doughnut{
+  width: 500px;
+  height: 400px;
+  position: absolute;
+  bottom: 5%;
+  right: 35%;
+ }
+
 
 .profile_content .info, .stats_content .info{
   color: #717171;
