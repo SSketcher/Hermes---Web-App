@@ -1,6 +1,6 @@
 from flask import Flask, request, url_for, redirect, render_template, flash, session, logging, request
 from flask_mysqldb import MySQL
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators, ValidationError
 from passlib.hash import sha256_crypt
 from functools import wraps
 
@@ -18,29 +18,53 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
 
+#___Create custom valisator___
+
+def id_check(form, field):
+    cur = mysql.connection.cursor()
+    result = cur.execute("SELECT * FROM hermesvn WHERE hermes_id = %s",[field.data])
+    if result > 0:
+        data = cur.fetchone()
+        used = data['used']
+        if used == True:
+            raise ValidationError('This Hermes Id number was already used!!')
+    else:
+        raise ValidationError('Incorrect Hermes Id number!!')
+
+
 #___Registration block___
 class RegisterForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50)])
-    username = StringField('Username', [validators.length(min=4, max=25)])
-    email = StringField('Email', [validators.Length(min=6, max=50)])
+    last_name = StringField('Last Name', [validators.Length(min=1, max=50)])
+    email = StringField('Email', [
+        validators.DataRequired(),
+        validators.Length(min=6, max=50)
+    ])
+    hermes_id = StringField('Hermes Id Number', [
+        validators.DataRequired(),
+        id_check
+    ])
     password = PasswordField('Password',[
         validators.DataRequired(),
         validators.EqualTo('confirm', message='Passwords don not match')
     ])
     confirm = PasswordField('Confirm Password')
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
         name = form.name.data
+        last_name = form.last_name.data
+        hermes_id = form.hermes_id.data
         email = form.email.data
-        username = form.username.data
         password = sha256_crypt.encrypt(str(form.password.data))
         #___Create cursor___
         cur = mysql.connection.cursor()
         #___SQL Query___
-        cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)",(name, email, username, password))
+        cur.execute("INSERT INTO users(name, last_name, email, password, hermes_id) VALUES(%s, %s, %s, %s, %s)",[name, last_name, email, password, hermes_id])
+        cur.execute("UPDATE hermesvn SET used = 1 WHERE hermes_id = %s;",[hermes_id])
         #___Commit to DB___
         mysql.connection.commit()
         #___Closing connection___
@@ -53,20 +77,20 @@ def register():
 @app.route('/log', methods=['GET', 'POST'])
 def log():
     if request.method == 'POST':
-        username = request.form['username']
+        email = request.form['email']
         password_candidate = request.form['password']       
         
         #___Create cursor___
         cur = mysql.connection.cursor()
         #___Get User by Username___
-        result = cur.execute("SELECT * FROM users WHERE username = %s",[username])
+        result = cur.execute("SELECT * FROM users WHERE email = %s",[email])
 
         if result > 0:
             data = cur.fetchone()
             password = data['password']
             if sha256_crypt.verify(password_candidate, password):
                 session['logged_in'] = True
-                session['username'] = username
+                session['user_id'] = data['id']
                 flash('You are now logged in','success')
                 return redirect('user_home')
             else:
@@ -92,6 +116,7 @@ def is_logged_in(f):
 def logout():
     session.clear()
     flash('You are now logout', 'message')
+    return redirect(url_for('index'))
 
 #__Subpages__
 @app.route('/')
