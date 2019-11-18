@@ -70,31 +70,31 @@ display: flex;
 text-align: center;
 align-items: center;
 justify-content: center;
-
 }
 
 .btn{
-border: 1px solid #3498db;
+border: 2px solid #3498db;
 background: none;
 padding: 12px 24px;
 font-size: 24px;
-font-family: "montserrat";
 cursor: pointer;
 margin: 10px;
 transition: 0.8s;
 overflow: hidden;
+border-radius: 24px;
+outline: none;
+
 }
 
 
-.btn1, .btn2{
-color: #3498db;	
+.btn:hover{
+background: #3498db;
 }
 
-
-.btn1:hover, .btn2:hover{
-color: #fff;
+.about-area header{
+  padding: 60px;
+  text-align: center;
 }
-
 .about-area{
   display: flex;
   justify-content: space-around;
@@ -155,7 +155,6 @@ text-transform: uppercase;
 font-weight: 500;
 }
 .box input[type = "text"],.box input[type = "password"]{
-border:0;
 background: none;
 display: block;
 margin: 20px auto;
@@ -230,12 +229,5 @@ cursor: pointer;
   background-position: center;
   transition: all 0.2s ease-in-out;
   overflow: hidden;
-
 }
 
-.photo1:hover
-{
-	-webkit-transform: scale(0.9);
-	-ms-transform: scale(0.9);
-	transform: scale(0.9);
-}

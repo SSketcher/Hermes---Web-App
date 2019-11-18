@@ -41,7 +41,7 @@ class RegisterForm(Form):
         validators.Length(min=6, max=50)
     ])
     hermes_id = StringField('Hermes Id Number', [
-        validators.DataRequired(),
+        validators.DataRequired(),  
         id_check
     ])
     password = PasswordField('Password',[
@@ -124,22 +124,22 @@ def index():
     return render_template('index.html')
 
 @app.route('/user')
-@is_logged_in
+#@is_logged_in
 def user():
     return render_template('user.html')
 
 @app.route('/user_home')
-@is_logged_in
+#@is_logged_in
 def user_home():
     return render_template('user_home.html')
 
 @app.route('/user_profile')
-@is_logged_in
+#@is_logged_in
 def user_profile():
     return render_template('user_profile.html')
     
 @app.route('/user_stats')
-@is_logged_in
+#@is_logged_in
 def user_stats():
     return render_template('user_stats.html')
 
