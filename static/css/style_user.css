@@ -69,6 +69,20 @@ cursor: pointer;
   display: flex;
 }
 
+.heart_ratio_content{
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #717171;
+  line-height: 25px;
+  overflow: hidden;
+  display: flex;
+}
+
+
 
 .profile_content, .stats_content{
   font-family: 'Roboto Condensed', sans-serif;
@@ -106,6 +120,18 @@ cursor: pointer;
   position: absolute;
   bottom: 0;
   left: 0;
+ }
+
+ .line{
+  width: 80%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+
  }
 
 
@@ -150,42 +176,64 @@ cursor: pointer;
 }
 
 
-.table1{
+
+.container
+{
+	
+	width: 1000px;
+  text-align: center;
+  align-items: center;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+
 }
 
-.content-table {
-  border-collapse: collapse;
-  margin: 25px 0;
-  font-size: 0.9em;
-  min-width: 500px;
-  border-radius: 5px 5px 0 0;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  background-color: #778899;
+.postcard
+{
+	display: inline-block;
+	width: 460px;
+	text-align: center;
+	padding: 5px;
 }
 
-.content-table thead tr {
-  background-color: #000;
-  color: #ccc;
-  text-align: left;
-  font-weight: bold;
+.postcard p
+{
+	padding: 5px;
+	margin-top: 10px;
 }
 
-.content-table th,
-.content-table td {
-  padding: 12px 15px;
+h1
+{
+	font-size: 32px;
+	font-weight: 400;
+	color: #39a5f1;
+	margin-top: 45px;	
+	margin-bottom: 30px;
+	letter-spacing: 10px;
+	text-transform: uppercase;
 }
 
-.content-table tbody tr {
-  border-bottom: 1px solid #dddddd;
+
+.photo5
+{
+	width: 450px;
+	height: 278px;
+	overflow: hidden;
 }
 
-.content-table tbody tr:nth-of-type(even) {
-  background-color: #778899;
+.photo5 img
+{
+	transition: all 0.5s ease-in-out;
 }
+
+.photo5:hover img
+{
+	-webkit-transform: scale(1.15);
+	-ms-transform: scale(1.15);
+	transform: scale(1.15);
+}
+
 

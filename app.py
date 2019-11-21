@@ -143,6 +143,13 @@ def user_profile():
 def user_stats():
     return render_template('user_stats.html')
 
+@app.route('/heart_ratio')
+#@is_logged_in
+def heart_ratio():
+    return render_template('heart_ratio.html')
+
+
 if __name__ == "__main__":
     app.secret_key = 'oliwiakrauze'
     app.run(debug = True)
+
