@@ -148,6 +148,22 @@ def user_stats():
 def heart_ratio():
     return render_template('heart_ratio.html')
 
+@app.route('/activity_char')
+#@is_logged_in
+def activity_char():
+    return render_template('activity_char.html')
+
+    
+@app.route('/sleep_char')
+#@is_logged_in
+def sleep_char():
+    return render_template('sleep_char.html')
+
+@app.route('/health_char')
+#@is_logged_in
+def health_char():
+    return render_template('health_char.html')
+
 
 if __name__ == "__main__":
     app.secret_key = 'oliwiakrauze'
