@@ -1,0 +1,50 @@
+{% extends 'user.html' %}
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+{% endblock %}
+
+
+{% block body %}\
+<div class="stats_content">
+        <div class="chart_stats">
+                <canvas id=myChart2></canvas>
+                <script>
+                  let myChart2 = document.getElementById('myChart2').getContext("2d");
+                  Chart.defaults.global.defaultFontSize =  18;
+                  Chart.defaults.global.defaultFontColor = "#ccc";
+      
+                  let barChart = new Chart(myChart2,
+                  {type:'bar',
+                  data:{ 
+                    labels: ['Monday','Tuesday','Wednesday','Thursday', 'Friday', 'Saturday', 'Sunday'],
+                    datasets:[{
+                      label: 'Steps',
+                      data: [5000,6000,11000,10000,12000,7000,3000],
+                      backgroundColor: ['#D7BDE2','#A9CCE3','#A3E4D7','#F9E79F','#F5CBA7','#F5B7B1','#D6DBDF'],
+                      borderWidth:1,
+                      borderColor:'#777',
+                      hoverborderWidth:3,
+                      hoverborderColor:'#000'
+                    }]
+                  },
+                  options: {
+                    title:{
+                      display:true,
+                      text:"Number of steps during the day",
+                      fontsize: 25
+                    },
+                    scales: {
+                      yAxes: [{
+                          display: true,
+                          ticks: {
+                              beginAtZero: true   
+                          }
+                        }]
+                       }
+                  }
+                  });
+                </script>
+            </div>
+</div>
+
+{% endblock %}

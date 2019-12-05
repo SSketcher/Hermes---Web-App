@@ -1,0 +1,45 @@
+{% extends 'user.html' %}
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+{% endblock %}
+
+
+{% block body %}
+<div class="heart_ratio_content">
+    <div class="line">
+            <canvas id=myChart></canvas>
+            <script>
+            let myChart = document.getElementById('myChart').getContext("2d");
+            Chart.defaults.global.defaultFontSize =  18;
+            Chart.defaults.global.defaultFontColor = '#ccc';
+
+            let lineChart = new Chart(myChart,
+            {type:'line',
+            data:{ 
+                labels: ['0','2000','4000','6000', '8000', '10000', '12000'],
+                datasets:[{
+                label: 'Heart ratio',
+                data: [1,-1,1,-1,1,-1,1],
+                fill: false,
+                borderWidth:5,
+                borderColor:'#F1948A',
+                hoverborderWidth:3,
+                hoverborderColor:'#000'
+                }]
+            },
+            options: {
+                scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: false   
+                    }
+                    }]
+                }
+            }
+            });
+            </script>
+    </div>
+</div>
+
+{% endblock %}
