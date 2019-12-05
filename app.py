@@ -18,11 +18,11 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
 
-#___Create custom valisator___
+#___Creating custom valisator___
 
 def id_check(form, field):
     cur = mysql.connection.cursor()
-    result = cur.execute("SELECT * FROM hermesvn WHERE hermes_id = %s",[field.data])
+    result = cur.execute("SELECT * FROM hermesvn WHERE Hermes_id = %s",[field.data])
     if result > 0:
         data = cur.fetchone()
         used = data['used']
@@ -63,8 +63,8 @@ def register():
         #___Create cursor___
         cur = mysql.connection.cursor()
         #___SQL Query___
-        cur.execute("INSERT INTO users(name, last_name, email, password, hermes_id) VALUES(%s, %s, %s, %s, %s)",[name, last_name, email, password, hermes_id])
-        cur.execute("UPDATE hermesvn SET used = 1 WHERE hermes_id = %s;",[hermes_id])
+        cur.execute("INSERT INTO users(Name, LastName, Email, UsersPassword, Hermes_id) VALUES(%s, %s, %s, %s, %s)",[name, last_name, email, password, hermes_id])
+        cur.execute("UPDATE HermesVN SET used = 1 WHERE hermes_id = %s;",[hermes_id])
         #___Commit to DB___
         mysql.connection.commit()
         #___Closing connection___

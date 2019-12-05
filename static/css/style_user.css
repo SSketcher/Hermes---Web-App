@@ -99,24 +99,24 @@ body{
 }
 
 .piechart{
- width: 600px;
- height: 400px;
+ width: 400px;
+ height: 200px;
  position: absolute;
- bottom: 5%;
+ bottom: 10%;
  right: 5%;
 }
 .histo{
-  width: 800px;
-  height: 600px;
+  width: 600px;
+  height: 400px;
   position: absolute;
   bottom: 30%;
   right: 5%;
 }
 .doughnut{
-  width: 500px;
-  height: 400px;
+  width: 400px;
+  height: 200px;
   position: absolute;
-  bottom: 5%;
+  bottom: 10%;
   right: 35%;
  }
 
@@ -125,7 +125,7 @@ body{
   color: #ccc;
   line-height: 25px;
   padding: 20px;
-
+  position: absolute;
 }
 
 
