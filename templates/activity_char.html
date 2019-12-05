@@ -1,0 +1,41 @@
+{% extends 'user.html' %}
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+{% endblock %}
+
+
+{% block body %}
+<div class="stats_content">
+    <div class="chart_stats">
+        <canvas id=myChart></canvas>
+        <script>
+          let myChart = document.getElementById('myChart').getContext("2d");
+          Chart.defaults.global.defaultFontSize =  18;
+          Chart.defaults.global.defaultFontColor = "#ccc";
+
+          let pieChart = new Chart(myChart,
+          {type:'pie',
+          data:{ 
+            labels: ['normal','high pressure','low pressure'],
+            datasets:[{
+              label: "Blood pressure during the day",
+              data: [60,20,20],
+              backgroundColor: ['#82E0AA','#F1948A','#85C1E9'],
+              borderWidth:1,
+              borderColor:'#777',
+              hoverborderWidth:3,
+              hoverborderColor:'#000'
+            }]
+          },
+          options: {
+            title:{
+              display:true,
+              text:"Blood pressure during the day",
+              fontsize: 25
+            }
+          }
+          });
+        </script>
+    </div>
+
+{% endblock %}
