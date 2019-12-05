@@ -106,32 +106,27 @@ cursor: pointer;
   background-color:#191919;
   color: #ccc;
 }
+.line{
+  width: 80%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+ }
 
 
-
-.piechart{
- width: 400px;
- height: 200px;
- position: absolute;
- bottom: 10%;
- right: 5%;
-}
-.histo{
-  width: 600px;
-  height: 400px;
+.chart_stats{
+  width: 800px;
+  height: 600px;
+  margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
-.doughnut{
-  width: 400px;
-  height: 200px;
-  position: absolute;
-  bottom: 10%;
-  right: 35%;
- }
 
 
 .profile_content .info, .stats_content .info{
