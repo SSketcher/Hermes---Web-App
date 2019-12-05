@@ -10,9 +10,9 @@ app = Flask(__name__)
 
 #___MyDQL config___
 app.config['MYSQL_HOST'] = 'sql7.freemysqlhosting.net'
-app.config['MYSQL_USER'] = 'sql7310443'
-app.config['MYSQL_PASSWORD'] = 'zIpZ79LfA5'
-app.config['MYSQL_DB'] = 'sql7310443'
+app.config['MYSQL_USER'] = 'sql7314271'
+app.config['MYSQL_PASSWORD'] = 'iGQhnDbfKa'
+app.config['MYSQL_DB'] = 'sql7314271'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 #___MyDQL config___
 mysql = MySQL(app)
@@ -22,10 +22,10 @@ mysql = MySQL(app)
 
 def id_check(form, field):
     cur = mysql.connection.cursor()
-    result = cur.execute("SELECT * FROM hermesvn WHERE Hermes_id = %s",[field.data])
+    result = cur.execute("SELECT * FROM HermesVN WHERE Hermes_id = %s",[field.data])
     if result > 0:
         data = cur.fetchone()
-        used = data['used']
+        used = data['Used']
         if used == True:
             raise ValidationError('This Hermes Id number was already used!!')
     else:
@@ -87,10 +87,10 @@ def log():
 
         if result > 0:
             data = cur.fetchone()
-            password = data['password']
+            password = data['UsersPassword']
             if sha256_crypt.verify(password_candidate, password):
                 session['logged_in'] = True
-                session['user_id'] = data['id']
+                session['user_id'] = data['UsersID']
                 flash('You are now logged in','success')
                 return redirect('user_home')
             else:
@@ -124,43 +124,43 @@ def index():
     return render_template('index.html')
 
 @app.route('/user')
-#@is_logged_in
+@is_logged_in
 def user():
     return render_template('user.html')
 
 @app.route('/user_home')
-#@is_logged_in
+@is_logged_in
 def user_home():
     return render_template('user_home.html')
 
 @app.route('/user_profile')
-#@is_logged_in
+@is_logged_in
 def user_profile():
     return render_template('user_profile.html')
     
 @app.route('/user_stats')
-#@is_logged_in
+@is_logged_in
 def user_stats():
     return render_template('user_stats.html')
 
 @app.route('/heart_ratio')
-#@is_logged_in
+@is_logged_in
 def heart_ratio():
     return render_template('heart_ratio.html')
 
 @app.route('/activity_char')
-#@is_logged_in
+@is_logged_in
 def activity_char():
     return render_template('activity_char.html')
 
     
 @app.route('/sleep_char')
-#@is_logged_in
+@is_logged_in
 def sleep_char():
     return render_template('sleep_char.html')
 
 @app.route('/health_char')
-#@is_logged_in
+@is_logged_in
 def health_char():
     return render_template('health_char.html')
 
