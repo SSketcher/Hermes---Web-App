@@ -69,19 +69,6 @@ cursor: pointer;
   display: flex;
 }
 
-.description{
-	width: 700px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  color: #000;
-  text-align: justify;
-  font-size: 20px;
-}
-
-
 .heart_ratio_content{
   height: 100vh;
   width: 100%;
@@ -109,16 +96,18 @@ cursor: pointer;
 
 
 
+
 .piechart{
- width: 400px;
- height: 200px;
+ width: 600px;
+ height: 400px;
  position: absolute;
- bottom: 10%;
- right: 5%;
+ bottom: 0;
+ right: 0;
 }
 .histo{
-  width: 600px;
-  height: 400px;
+  width: 800px;
+  height: 600px;
+  margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -126,8 +115,16 @@ cursor: pointer;
   transform: translate(-50%, -50%);
 }
 .doughnut{
-  width: 400px;
-  height: 200px;
+  width: 500px;
+  height: 350px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+ }
+
+ .line{
+  width: 80%;
+  margin: 0;
   position: absolute;
   bottom: 10%;
   right: 35%;
@@ -165,6 +162,7 @@ cursor: pointer;
   color: white;
   border-radius: 24px;
   transition: 0.2s;
+  text-align: center;
 }
 
 .button:hover, a:hover {
