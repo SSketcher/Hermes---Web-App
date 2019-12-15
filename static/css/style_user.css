@@ -204,7 +204,9 @@ h1
 	margin-top: 45px;	
 	margin-bottom: 30px;
 	letter-spacing: 10px;
-	text-transform: uppercase;
+  text-transform: uppercase;
+  text-align: center;
+  align-items: center;
 }
 
 
