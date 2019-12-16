@@ -153,7 +153,8 @@ def heart_ratio():
 @app.route('/activity_char')
 @is_logged_in
 def activity_char():
-    return render_template('activity_char.html')
+    activity_data=sample(range(1,10),3)
+    return render_template('activity_char.html',values=activity_data)
 
     
 @app.route('/sleep_char')
@@ -161,6 +162,12 @@ def activity_char():
 def sleep_char():
     sleep_data=sample(range(1,10),3)
     return render_template('sleep_char.html',values=sleep_data)
+
+@app.route('/mind_char')
+@is_logged_in
+def mind_char():
+    mind_data=sample(range(10,50),2)
+    return render_template('mind_char.html',values=mind_data)
 
 @app.route('/health_char')
 @is_logged_in

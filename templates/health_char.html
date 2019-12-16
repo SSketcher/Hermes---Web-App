@@ -7,6 +7,7 @@
 {% block body %}\
 <div class="stats_content">
         <div class="chart_stats">
+          <h2>Number of steps during the day<button class="button"  onclick="updateData(polarChart)">Update</button></h2>
                 <canvas id=myChart2></canvas>
                 <script>
                   let myChart2 = document.getElementById('myChart2').getContext("2d");
@@ -30,8 +31,12 @@
                   options: {
                     title:{
                       display:true,
-                      text:"Number of steps during the day",
+                      //text:"Number of steps during the day",
                       fontsize: 25
+                    },
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
                     },
                     scales: {
                       yAxes: [{
