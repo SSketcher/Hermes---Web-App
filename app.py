@@ -1,8 +1,9 @@
-from flask import Flask, request, url_for, redirect, render_template, flash, session, logging, request
+from flask import Flask, request, url_for, redirect, render_template, flash, session, logging, request, Markup
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators, ValidationError
 from passlib.hash import sha256_crypt
 from functools import wraps
+from random import sample
 
 
 app = Flask(__name__)
@@ -118,6 +119,7 @@ def logout():
     flash('You are now logout', 'message')
     return redirect(url_for('index'))
 
+
 #__Subpages__
 @app.route('/')
 def index():
@@ -147,6 +149,23 @@ def user_stats():
 @is_logged_in
 def heart_ratio():
     return render_template('heart_ratio.html')
+
+@app.route('/activity_char')
+@is_logged_in
+def activity_char():
+    return render_template('activity_char.html')
+
+    
+@app.route('/sleep_char')
+@is_logged_in
+def sleep_char():
+    sleep_data=sample(range(1,10),3)
+    return render_template('sleep_char.html',values=sleep_data)
+
+@app.route('/health_char')
+@is_logged_in
+def health_char():
+    return render_template('health_char.html')
 
 
 if __name__ == "__main__":

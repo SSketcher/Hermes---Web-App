@@ -1,0 +1,55 @@
+{% extends 'user.html' %}
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+
+{% endblock %}
+
+
+{% block body %}
+<div class="stats_content">
+<div class="chart_stats">
+  <h1>Sleep time<button class="button"  onclick="updateData(doughnutChart)">Update</button></h1>
+        <canvas id=myChart3></canvas>
+        <script>
+          var myChart3 = document.getElementById('myChart3').getContext("2d");
+          Chart.defaults.global.defaultFontSize =  18;
+          Chart.defaults.global.defaultFontColor = "#ccc";
+          var doughnutChart = new Chart(myChart3,
+          {type:'doughnut',
+          data:{ 
+            labels: ['normal time','short time','long time'],
+            datasets:[{
+              label: 'activity',
+              data: [40,20,20],
+              backgroundColor: ['#82E0AA','#F1948A','#85C1E9'],
+              borderWidth:1,
+              borderColor:'#777',
+              hoverborderWidth:3,
+              hoverborderColor:'#000'
+            }]
+          },
+          options: {
+            title:{
+              display:true,
+              //text:"Sleep time",
+              fontsize: 25
+            },
+            rotation: 1 * Math.PI,
+            circumference: 1 * Math.PI
+          }
+         });
+
+         function updateData(chart){
+         chart.data.datasets[0].data = 
+          [{% for item in values %}
+          {{item}},
+          {% endfor %}];
+          chart.update();
+          }
+
+        </script>
+    </div>
+</div>
+
+{% endblock %}
