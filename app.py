@@ -153,19 +153,48 @@ def heart_ratio():
 @app.route('/activity_char')
 @is_logged_in
 def activity_char():
-    return render_template('activity_char.html')
+    activity_data=sample(range(1,10),3)
+    return render_template('activity_char.html',values=activity_data)
 
     
 @app.route('/sleep_char')
 @is_logged_in
 def sleep_char():
-    sleep_data=sample(range(1,10),3)
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * from chart_test")
+    data = cursor.fetchall()
+    sleep_data = []
+    for row in data:
+      sleep_data.append(row['Day1'])
+      sleep_data.append(row['Day2'])
+      sleep_data.append(row['Day3'])
+
     return render_template('sleep_char.html',values=sleep_data)
+
+@app.route('/mind_char')
+@is_logged_in
+def mind_char():
+    mind_data=sample(range(10,50),2)
+    return render_template('mind_char.html',values=mind_data)
 
 @app.route('/health_char')
 @is_logged_in
 def health_char():
-    return render_template('health_char.html')
+
+    cursor = mysql.connection.cursor()
+    cursor.execute("SELECT * from steps_tab")
+    data = cursor.fetchall()
+    health_data = []
+    for row in data:
+      health_data.append(row['Day1'])
+      health_data.append(row['Day2'])
+      health_data.append(row['Day3'])
+      health_data.append(row['Day4'])
+      health_data.append(row['Day5'])
+      health_data.append(row['Day6'])
+      health_data.append(row['Day7'])
+
+    return render_template('health_char.html',values=health_data)
 
 
 if __name__ == "__main__":
