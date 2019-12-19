@@ -160,15 +160,7 @@ def activity_char():
 @app.route('/sleep_char')
 @is_logged_in
 def sleep_char():
-    cursor = mysql.connection.cursor()
-    cursor.execute("SELECT * from chart_test")
-    data = cursor.fetchall()
-    sleep_data = []
-    for row in data:
-      sleep_data.append(row['Day1'])
-      sleep_data.append(row['Day2'])
-      sleep_data.append(row['Day3'])
-
+    sleep_data=sample(range(1,10),3)
     return render_template('sleep_char.html',values=sleep_data)
 
 @app.route('/mind_char')
@@ -180,21 +172,7 @@ def mind_char():
 @app.route('/health_char')
 @is_logged_in
 def health_char():
-
-    cursor = mysql.connection.cursor()
-    cursor.execute("SELECT * from steps_tab")
-    data = cursor.fetchall()
-    health_data = []
-    for row in data:
-      health_data.append(row['Day1'])
-      health_data.append(row['Day2'])
-      health_data.append(row['Day3'])
-      health_data.append(row['Day4'])
-      health_data.append(row['Day5'])
-      health_data.append(row['Day6'])
-      health_data.append(row['Day7'])
-
-    return render_template('health_char.html',values=health_data)
+    return render_template('health_char.html')
 
 
 if __name__ == "__main__":
