@@ -107,7 +107,7 @@ cursor: pointer;
   color: #ccc;
 }
 .line{
-  width: 80%;
+  width: 75%;
   margin: 0;
   position: absolute;
   top: 50%;
@@ -118,8 +118,8 @@ cursor: pointer;
 
 
 .chart_stats{
-  width: 800px;
-  height: 600px;
+  width: 650px;
+  height: 500px;
   margin: 0;
   position: absolute;
   top: 50%;
@@ -139,7 +139,7 @@ cursor: pointer;
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
+  max-width: 250px;
   margin: auto;
   text-align: center;
 }
@@ -155,7 +155,7 @@ cursor: pointer;
   margin: 20px auto;
   border: 2px solid #3498db;
   padding: 14px 10px;
-  width: 200px;
+  width: 160px;
   outline: none;
   color: white;
   border-radius: 24px;
@@ -185,7 +185,7 @@ cursor: pointer;
 .postcard
 {
 	display: inline-block;
-	width: 460px;
+	width: 380px;
 	text-align: center;
 	padding: 5px;
 }
@@ -193,17 +193,15 @@ cursor: pointer;
 .postcard p
 {
 	padding: 5px;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 h1
 {
-	font-size: 32px;
+	font-size: 13px;
 	font-weight: 400;
 	color: #39a5f1;
-	margin-top: 45px;	
-	margin-bottom: 30px;
-	letter-spacing: 10px;
+	letter-spacing: 4px;
   text-transform: uppercase;
   text-align: center;
   align-items: center;
@@ -211,7 +209,7 @@ h1
 
 h2
 {
-	font-size: 18;
+	font-size: 18px;
 	font-weight: 400;
 	color: #39a5f1;
 	letter-spacing: 10px;
@@ -223,8 +221,8 @@ h2
 
 .photo5
 {
-	width: 450px;
-	height: 278px;
+	width: 350px;
+	height: 220px;
 	overflow: hidden;
 }
 
